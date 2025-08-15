@@ -1,6 +1,13 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        nums.sort()
-        n=len(nums)
-        return nums[n//2]
-        
+        mid_index = len(nums) // 2
+        hashmap = {}
+        for i in nums:
+            if i not in hashmap:
+                hashmap[i] = 1
+            else:
+                hashmap[i] += 1
+        for key, value in hashmap.items():
+            if value > mid_index:
+                return key
+        return -1
